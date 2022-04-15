@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ movie.title }}</h1>
+
+<p>
+  {{ movie.overview }}
+</p>
+
+<form action="/movies/{{ movie.movie_id }}/rating" method="POST">
+  <p>Please rate this movie from 1-5:</p>
+
+  {% for i in range(1,6) %}
+    <input type="radio" name="score" value="{{i}}" id="{{i}}-rating">
+    <label for= "{{i}}-rating">{{i}}</label>  
+  {% endfor %}
+    
+  <input type="submit" />
+  
+</form>
+
+<img src="{{ movie.poster_path }}">
+{% endblock %}
